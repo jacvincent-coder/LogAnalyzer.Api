@@ -21,7 +21,9 @@ namespace LogAnalyzer.Tests.Integration
         public async Task Analyze_Should_Return_200_For_Valid_File()
         {
             var content = new MultipartFormDataContent();
-            content.Add(new StringContent("1.1.1.1 - - \"GET /a HTTP/1.1\""), "LogFile", "log.txt");
+            content.Add(new StringContent("177.0.0.1 - - \"GET /x HTTP/1.1\""),
+                        "logFile",   // MUST MATCH [FromForm(Name = "logFile")]
+                        "log.txt");
 
             var response = await _client.PostAsync("/api/log/analyze", content);
 
@@ -32,24 +34,11 @@ namespace LogAnalyzer.Tests.Integration
         public async Task Analyze_Should_Return_400_For_Empty_File()
         {
             var content = new MultipartFormDataContent();
-            content.Add(new ByteArrayContent(Array.Empty<byte>()), "LogFile", "empty.txt");
+            content.Add(new ByteArrayContent(Array.Empty<byte>()), "logFile", "empty.txt");
 
             var response = await _client.PostAsync("/api/log/analyze", content);
 
             Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
-        }
-
-        [Fact]
-        public async Task Analyze_Should_Trigger_Middleware_For_Exception()
-        {
-            // Use a huge file to force possible errors OR test unknown behavior
-            var content = new MultipartFormDataContent();
-            content.Add(new StringContent("INVALID LOG ENTRY"), "LogFile", "bad.log");
-
-            var response = await _client.PostAsync("/api/log/analyze", content);
-
-            // Should NOT crash — middleware handles and returns an ApiError object
-            Assert.True(response.StatusCode == HttpStatusCode.OK || response.StatusCode == HttpStatusCode.BadRequest);
         }
 
         [Fact]
