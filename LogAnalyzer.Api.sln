@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36623.8 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogAnalyzer.Api", "LogAnalyzer.Api\LogAnalyzer.Api.csproj", "{3F889CE3-68EB-469C-B6E5-B2D563A3A65E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogAnalyzer.Tests", "LogAnalyzer.Tests\LogAnalyzer.Tests.csproj", "{84EB8208-C52D-4B46-AA39-88038288A334}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3F889CE3-68EB-469C-B6E5-B2D563A3A65E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3F889CE3-68EB-469C-B6E5-B2D563A3A65E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3F889CE3-68EB-469C-B6E5-B2D563A3A65E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3F889CE3-68EB-469C-B6E5-B2D563A3A65E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{84EB8208-C52D-4B46-AA39-88038288A334}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{84EB8208-C52D-4B46-AA39-88038288A334}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{84EB8208-C52D-4B46-AA39-88038288A334}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{84EB8208-C52D-4B46-AA39-88038288A334}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4810E9E1-A9AE-433B-AA15-16301C926BCD}
+	EndGlobalSection
+EndGlobal
