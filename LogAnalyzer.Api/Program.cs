@@ -1,3 +1,4 @@
+using LogAnalyzer.Api.Middleware;
 using LogAnalyzer.Api.Services;
 using LogAnalyzer.Api.Utils;
 
@@ -22,6 +23,9 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+// custom excpetion handling middleware
+app.UseMiddleware<ExceptionHandlingMiddleware>();
 
 app.UseAuthorization();
 
