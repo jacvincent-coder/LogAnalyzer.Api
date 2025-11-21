@@ -1,5 +1,6 @@
 ﻿using LogAnalyzer.Api.Models;
 using LogAnalyzer.Api.Services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,6 +9,7 @@ namespace LogAnalyzer.Api.Controllers
     [ApiController]
     [Route("api/[controller]")]
     //[Authorize]
+    //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public class LogController : ControllerBase
     {
         private readonly ILogAnalyzerService _logAnalyzerService;

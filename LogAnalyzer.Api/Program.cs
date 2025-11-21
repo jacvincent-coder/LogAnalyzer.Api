@@ -9,6 +9,19 @@ var builder = WebApplication.CreateBuilder(args);
 var apiKey = builder.Configuration["ApiKey"];
 Console.WriteLine("Loaded API Key: " + apiKey);
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowUI", policy =>
+    {
+        policy
+            .WithOrigins("http://localhost:4200")
+            .AllowAnyHeader()
+            .AllowAnyMethod()
+            .AllowCredentials()
+            .WithExposedHeaders("X-API-Key");
+    });
+});
+
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 
@@ -54,7 +67,12 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseCors("AllowUI");
+
 app.UseHttpsRedirection();
+
+app.UseAuthentication();
+app.UseAuthorization();
 
 // API Key Middleware (GLOBAL)
 app.UseMiddleware<ApiKeyMiddleware>();

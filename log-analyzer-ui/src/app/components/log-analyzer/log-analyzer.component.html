@@ -1,0 +1,21 @@
+<div class="log-analyzer-container">
+
+  <input type="file" (change)="onFileSelected($event)" />
+
+  <button type="button" (click)="upload()">Analyze</button>
+
+  <div *ngIf="errorMessage" class="error">
+    {{ errorMessage }}
+  </div>
+
+  <div *ngIf="result as r" class="result">
+    <h3>Log Analysis Result</h3>
+
+    <table>
+      <tr><td>Unique IP Count:</td><td>{{ r.uniqueIpCount }}</td></tr>
+      <tr><td>Top URLs:</td><td>{{ r.topUrls.join(', ') }}</td></tr>
+      <tr><td>Top IP Addresses:</td><td>{{ r.topIpAddresses.join(', ') }}</td></tr>
+    </table>
+  </div>
+
+</div>
