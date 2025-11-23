@@ -15,6 +15,11 @@ namespace LogAnalyzer.Tests.Integration
         public LogApiIntegrationTests(WebApplicationFactory<Program> factory)
         {
             _client = factory.CreateClient();
+
+            _client.DefaultRequestHeaders.Add(
+                "X-API-Key",
+                "9b955bef42a8ecd1c3530863ad0a40922edc2afe0c444215b6968f29af13da5d"
+            );
         }
 
         [Fact]
@@ -22,7 +27,7 @@ namespace LogAnalyzer.Tests.Integration
         {
             var content = new MultipartFormDataContent();
             content.Add(new StringContent("177.0.0.1 - - \"GET /x HTTP/1.1\""),
-                        "logFile",   // MUST MATCH [FromForm(Name = "logFile")]
+                        "logFile",
                         "log.txt");
 
             var response = await _client.PostAsync("/api/log/analyze", content);
