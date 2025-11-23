@@ -1,20 +1,43 @@
 <div class="log-analyzer-container">
 
-  <input type="file" (change)="onFileSelected($event)" />
+  <input #fileInput type="file" (change)="onFileSelected($event)" />
 
-  <button type="button" (click)="upload()">Analyze</button>
+  <div class="button-row">
+    <button type="button" (click)="upload()" [disabled]="loading">
+      {{ loading ? 'Analyzing...' : 'Analyze' }}
+    </button>
+    <button type="button" class="reset-btn" (click)="reset()">Reset</button>
+  </div>
 
-  <div *ngIf="errorMessage" class="error">
-    {{ errorMessage }}
+  <!-- Spinner -->
+  <div *ngIf="loading" class="spinner"></div>
+
+  <!-- Error Banner -->
+  <div *ngIf="showError" class="error-banner">
+    <span>{{ errorMessage }}</span>
+    <button class="close-btn" (click)="showError = false">✖</button>
   </div>
 
   <div *ngIf="result as r" class="result">
+    <button type="button" class="download-btn" (click)="downloadResult(r)">
+    ⬇ Download Result
+    </button>
+
     <h3>Log Analysis Result</h3>
 
     <table>
-      <tr><td>Unique IP Count:</td><td>{{ r.uniqueIpCount }}</td></tr>
-      <tr><td>Top URLs:</td><td>{{ r.topUrls.join(', ') }}</td></tr>
-      <tr><td>Top IP Addresses:</td><td>{{ r.topIpAddresses.join(', ') }}</td></tr>
+      <tr>
+        <td>Unique IP Count:</td>
+        <td>{{ r.uniqueIpCount }}</td>
+      </tr>
+      <tr>
+        <td>Top URLs:</td>
+        <td>{{ r.topUrls.join(', ') }}</td>
+      </tr>
+      <tr>
+        <td>Top IP Addresses:</td>
+        <td>{{ r.topIpAddresses.join(', ') }}</td>
+      </tr>
     </table>
   </div>
 
